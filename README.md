@@ -38,7 +38,7 @@ You'll need **Xcode 27.1** and **iOS 27+**. Hinge observation uses iOS 27.1 APIs
 open iDex.xcodeproj
 ```
 
-Select **iDex → iPhone Duo**, then Run. No packages, API keys, servers, or runtime downloads to configure. In Simulator, tap **Scan** to identify the sample Pikachu. On a device, allow camera access or import a photo.
+Select **iDex → iPhone Duo**, then Run. The trained FP32 model is included in this Git repository; clone normally, with no LFS or separate model download. No packages, API keys, servers, or runtime downloads to configure. In Simulator, tap **Scan** to identify the sample Pikachu. On a device, allow camera access or import a photo.
 
 Run the tests:
 
@@ -59,7 +59,7 @@ SwiftUI, AVFoundation, Core ML, and system speech. Everything runs locally.
 
 ## Thanks, humans
 
-Sprites: [Pokémon Database](https://pokemondb.net/sprites). Data and cries: [PokéAPI](https://github.com/PokeAPI/pokeapi). Model: [BiernyVR](https://huggingface.co/BiernyVR/pokemon-classifier-mobilenetv3). Fonts: Press Start 2P and Fusion Pixel (SIL OFL 1.1).
+Sprites: [Pokémon Database](https://pokemondb.net/sprites). Data and cries: [PokéAPI](https://github.com/PokeAPI/pokeapi). Model: locally trained EfficientNet-B0 (FP32), built with [TorchVision](https://docs.pytorch.org/vision/stable/models/efficientnet.html). Fonts: Press Start 2P and Fusion Pixel (SIL OFL 1.1).
 
 [Full asset credits](iDex/Catalog/ATTRIBUTION.md) · [Model provenance](iDex/Recognition/MODEL.md)
 

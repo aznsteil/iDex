@@ -1,0 +1,7 @@
+# Observed Mac conversion stack; use an isolated Python3.11 environment.
+# coremltools warns this torch version exceeds its tested set; verify every export.
+coremltools==9.0
+torch==2.14.1
+torchvision==0.29.1
+numpy==2.4.6
+pillow==13.0.0

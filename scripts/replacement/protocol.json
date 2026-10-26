@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "intent": "Recorded bounded training/evaluation protocol; the verified FP32 artifact is now the selected app default.",
+  "taxonomy": "151 Kanto National Dex species, exact bundled labels order. Shiny and named regional forms collapse to base species; no form-level claims.",
+  "data_sources": [
+    "sgtsaughter/pokemon-classification-images-151",
+    "keremberke/pokemon-classification",
+    "JJMack/pokemon-classification-gen1-9",
+    "COCO128 natural-object diagnostic"
+  ],
+  "grouping": "Before split: same source filename/pose, OOD species ID, byte/pixel hashes, white-cropped pHash/mirror Hamming<=6 connected components; quarantine label conflicts. Automated grouping can miss shared artwork/session identity.",
+  "split": "Seed 20261027; per-species positive group 70/15/15 train/val/test_public, unknown groups split val/test by source; no source-published split is trusted.",
+  "baseline_exposure": "Comparison-model exposure to portions of the public data is known or unresolved; public diagnostics do not prove independent camera superiority.",
+  "candidates": [
+    {
+      "architecture": "torchvision mobilenet_v3_large",
+      "size": 224,
+      "epochs": 8,
+      "batch": 64,
+      "lr": 0.0003
+    },
+    {
+      "architecture": "torchvision efficientnet_b0",
+      "size": 224,
+      "epochs": 8,
+      "batch": 64,
+      "lr": 0.0003
+    }
+  ],
+  "optimization": "AdamW weight_decay .01, cosine schedule, label smoothing .05, BF16 autocast, grad clip5. Fixed seed and epoch-boundary checkpoints. Existing Windows torch2.13.0+cu132/torchvision0.28.0; no environment upgrade.",
+  "bounded_followup": "At most one promising winner continuation for <=12 more epochs at lr .0001; or one higher-resolution trial only if validation error evidence justifies it. No unbounded sweep.",
+  "selection": "Best checkpoint by positive validation top1, tie smaller artifact then macro recall. Architecture/followup/threshold choices recorded and SHA-bound before opening test_public predictions.",
+  "unknown_policy": "Keep shipped baseline confidence>=.25 AND raw logit margin>=.5 for fair reference. Candidate diagnostic threshold/temperature chosen on val+ood_val only, then frozen. A 151-way score is not a trained unknown detector.",
+  "evaluation": "Identical original images, center-square RGB white alpha and bilinear resolution-specific resize. PIL/CoreGraphics pixel parity pending Apple dump harness. Top1/3/5 macro recall/F1 per class confusion NLL Brier ECE acceptance coverage/FAR; 1000 paired group bootstrap samples. COCO128 is a small nonrepresentative diagnostic, not iPhone camera evidence.",
+  "export": "Export separate packages into fresh folders; the selected default is the validated FP32 package. Other precisions require full numerical and device validation.",
+  "promotion_gates": [
+    "Frozen independently captured/session-grouped camera set",
+    "Paired meaningful accuracy improvement with uncertainty and unknown-input performance",
+    "Source rights reviewed for intended redistribution",
+    "Mac export + full CoreML parity",
+    "Physical target iPhone p50/p95/cold/warm/sustained latency memory thermal and operation placement evidence"
+  ]
+}

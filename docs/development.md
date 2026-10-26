@@ -22,7 +22,7 @@ Settings offers English / 简体中文 / 日本語 and a sound toggle. Japanese 
 
 ## Recognition scope
 
-The app includes a roughly **14 MB FP16 DenseNet121 Core ML model for the original 151 Kanto species**. It computes predictions on the device and always selects the highest-ranked Pokémon. A top score of at least 25% and a logit margin of at least 0.5 allow automatic discovery and narration. Weaker results show the top Pokémon's sprite, labelled “Best match” and “Low confidence”, with its actual model score; they are not automatically marked discovered or narrated.
+The app includes a roughly **17 MB FP32 EfficientNet-B0 Core ML model for the original 151 Kanto species**. It computes predictions on the device and always selects the highest-ranked Pokémon. A top score of at least 25% and a logit margin of at least 0.5 allow automatic discovery and narration. Weaker results show the top Pokémon's sprite, labelled “Best match” and “Low confidence”, with its actual model score; they are not automatically marked discovered or narrated.
 
 This is a 151-class model without a trained unknown/background class. Unrelated objects and non-Kanto Pokémon can still produce false matches. Camera accuracy across toys, cards, lighting, and viewpoints needs physical-device evaluation. The model score is not a calibrated probability. See [model provenance and reproduction](../iDex/Recognition/MODEL.md).
 
@@ -41,7 +41,7 @@ xcodebuild test -project iDex.xcodeproj -scheme iDex \
   -destination 'platform=iOS Simulator,name=iPhone Duo'
 ```
 
-The tests exercise real bundled-model inference, relaxed acceptance of previously rejected sprites, and blank-image best guesses without automatic discovery, catalog completeness, every sprite, all three font faces, English, Chinese, and Japanese search and prompts, layout continuity, language persistence, discovery display, and archive selection. The UI tests explicitly mute audio to keep automated runs quiet.
+The tests exercise real bundled-model inference, the selected FP32 model contract and known-image rankings, and blank-image best guesses without automatic discovery, catalog completeness, every sprite, all three font faces, English, Chinese, and Japanese search and prompts, layout continuity, language persistence, discovery display, and archive selection. The UI tests explicitly mute audio to keep automated runs quiet.
 
 `ContentView.swift` contains named SwiftUI previews at the Duo cover and expanded dimensions. The physical camera and an actual fold transition still require device testing; rendered expanded previews and geometry tests do not prove physical continuity.
 
@@ -59,7 +59,7 @@ xcrun simctl io booted screenshot --display=1 /tmp/idex-cover.png
 - [PokéAPI](https://github.com/PokeAPI/pokeapi): species names, localized flavor text, dimensions, types, and stats.
 - [PokéAPI cries](https://github.com/PokeAPI/cries): all 151 species' latest cries, pinned and converted to mono PCM WAV for offline playback. Regenerate with `python3 scripts/audio/build_cries.py` (development requires `ffmpeg`).
 - Press Start 2P and Fusion Pixel: bundled Latin, Simplified Chinese, and Japanese pixel fonts under SIL OFL 1.1, with license files.
-- [BiernyVR's classifier](https://huggingface.co/BiernyVR/pokemon-classifier-mobilenetv3): pinned DenseNet121 checkpoint, with upstream MIT metadata and documented conversion.
+- Locally trained EfficientNet-B0 FP32 is the user-selected default. Its exact checkpoint, parity results, public-data limits and rollback are in [MODEL.md](../iDex/Recognition/MODEL.md).
 - Physical-device inspiration: [Stuff's DIY Pokédex article](https://stuff.co.za/2026/04/15/the-pokedex-is-real-and-fully-functional-but-youd-have-to-build-your-own/) and [Pokebattler's Pokédex reference](https://articles.pokebattler.com/2018/08/30/pogo-pokedex-by-the-numbers/).
 
 See [catalog attribution](../iDex/Catalog/ATTRIBUTION.md), [model notes](../iDex/Recognition/MODEL.md), and `scripts/` for reproducible catalog, model, and app-icon generation. Pokémon and related characters belong to Nintendo, Creatures, GAME FREAK, and The Pokémon Company. iDex is not affiliated with or endorsed by them.

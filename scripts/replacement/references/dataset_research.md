@@ -1,0 +1,17 @@
+# Dataset provenance and evaluation scope
+
+The selected iDex model is an EfficientNet-B0 fine-tuned locally for151 Kanto species. Its input images are public third-party material, not an all-original iDex collection. The pinned sources and applicable declarations are listed in [MODEL_NOTICE.md](../../../iDex/Recognition/MODEL_NOTICE.md).
+
+- **JJMack/pokemon-classification-gen1-9**, revision `959ff557b102fc3b4f912d0ca769273be5b9ca7f`: card declares CC BY-NC-SA4.0, attributes images to Bulbapedia. Preserve credit, noncommercial and share-alike conditions. Restrict target IDs to1…151; retain form metadata and disclose collapsed forms.
+- **keremberke/pokemon-classification**, revision `a0b014ffa0bf56b0a490676d298b3d73ca52b8d6`: Roboflow-exported dataset, card declares Public Domain. Audit its labels and border/resize variants; a publisher's label is not independent artwork-rights clearance.
+- **sgtsaughter/pokemon-classification-images-151**, revision `9d40cca6974fced75a285afbb5e4ad381941485d`: card declares Apache2.0, with limited image-level provenance. Archive SHA-256 `31e6852f0cdc8e7a8abc4074ac844c4be059b915f0099367eeb2aeff4cc1748f`.
+
+The source cards were checked at those revisions for publication; their exact links and rights caveats remain in the model notice. Acquisition code records download URLs/bytes/hashes and reads expected image/data files without executing dataset builders. Do not redistribute source photographs merely because their uploader used a permissive metadata label.
+
+Data processing uses exact/decoded hashes, source identity, mirrored/cropped perceptual neighbors and connected groups before a seeded split. Conflicting labels are quarantined. Automated grouping can miss shared original artwork, and the comparison models' full training exposure cannot be reconstructed. A public test split can therefore be reserved from this training campaign without proving that every compared model never saw it.
+
+The stricter reserved public diagnostic excludes recorded groups linked to selected training-source identities; results still carry unresolved exposure and annotation limits. Keep source-specific slices, per-class support, accepted accuracy/coverage and unknown-input behavior separate. Use group-aware paired uncertainty estimates rather than treating related frames as independent samples. Never tune against the locked final test.
+
+COCO-based natural-image diagnostics preserve photograph IDs/licensing metadata where available. Dataset annotations and photographs have different rights; raw images are not included in the Git upload. Unlabelled numerical fixtures are not automatically an adjudicated negative test or a false-positive-rate denominator.
+
+See [CAMERA_TEST_PROTOCOL.md](../CAMERA_TEST_PROTOCOL.md) for source/artwork/session-grouped calibration and untouched camera tests. A fresh photograph of known public artwork tests capture changes, not necessarily novel-artwork recognition. Do not claim real-camera superiority from the public diagnostic or171 conversion fixtures alone.

@@ -1,0 +1,28 @@
+{
+  "source_checkpoint_sha256": "b24cf5301ad97bd1f1f721bffa3c40ec0242bf1efac68435a3752850f624fa6f",
+  "graph_sha256": "71f9a424c355484cc6df79e197e912547b2b3d2f63c39d3d5d01b6bb43e3939d",
+  "weights_sha256": "732f3b550cb44c7927d0914086df7b1237371a7d9a902942fd03ab5274d92756",
+  "model_spec_sha256": "c084e36a3006f6a2e33d50b0c95dff33c9a828ad0458be610006c72a554a37f2",
+  "labels_sha256": "13bd2345fa10f8a7d04363772bb6ef7871c0a6c0635d8c907a77e6cb93f78725",
+  "program_and_weights_equal_verified_phone_fp32": true,
+  "model_bytes": 16854510,
+  "selected_architecture": "efficientnet_b0",
+  "precision": "float32",
+  "input": [
+    1,
+    3,
+    224,
+    224
+  ],
+  "compute_units_device": "all",
+  "compute_units_simulator": "cpuOnly",
+  "ordinary_softmax_temperature": 1,
+  "confidence_threshold": 0.25,
+  "logit_margin_threshold": 0.5,
+  "independent_camera_superiority_established": false,
+  "architecture_implementation": "torchvision.models.efficientnet_b0",
+  "initialization_weights_sha256": "7f5810bc96def8f7552d5b7e68d53c4786f81167d28291b21c0d90e1fca14934",
+  "training_manifest_sha256": "94fef4bc7a8f6195c9b45515d05578387bd31608ed05950f444762687c1144d7",
+  "git_storage": "regular Git blobs; no LFS required",
+  "model_notice": "iDex/Recognition/MODEL_NOTICE.md"
+}

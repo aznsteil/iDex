@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "classes": 151,
+  "labels": "iDex/Recognition/pokemon_labels.json, preserved exact order; IDs 1..151",
+  "labels_file_sha256": "13bd2345fa10f8a7d04363772bb6ef7871c0a6c0635d8c907a77e6cb93f78725",
+  "taxonomy": "National Dex Kanto species; shiny/regional variants map to underlying species where source identifies them. No distinct-form output.",
+  "image_preparation": {
+    "orientation": "EXIF correction before cropping",
+    "color": "sRGB RGB, alpha composited on opaque white",
+    "app_import": "ImageIO bounded thumbnail (1200px short-side, max2048*2048 decoded area), centered square, CoreGraphics high-quality drawing, CoreML scaleFill",
+    "python_approximation": "EXIF + white compositing at ingestion, centered square, PIL bilinear fixed-size resize. CoreGraphics interpolation/color parity is pending Apple validation.",
+    "resolution": "224 for current candidates and baseline; confirm selected checkpoint config",
+    "torch_input": "NCHW float range 0..1",
+    "coreml_input": "image, RGB ImageType, fixed batch1; ImageType global scale1/255",
+    "embedded_normalization": {
+      "mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "std": [
+        0.229,
+        0.224,
+        0.225
+      ]
+    },
+    "normalization_rule": "Apply exactly once inside exported graph; do not use averaged per-channel scale"
+  },
+  "output": {
+    "name": "logits",
+    "count": 151,
+    "semantics": "Unnormalized finite scores in exact supplied labels order; no embedded softmax or temperature"
+  },
+  "shipped_baseline_acceptance": {
+    "softmax_temperature": 1,
+    "minimum_confidence": 0.25,
+    "minimum_raw_logit_margin": 0.5
+  },
+  "candidate_acceptance": "The selected default retains ordinary softmax temperature1, confidence>=.25 and logit margin>=.5; validation-only diagnostic policies are not automatically installed.",
+  "promotion": "FP32 was explicitly selected as default after source parity and device measurements; independent camera superiority remains unverified.",
+  "selected_default": {
+    "architecture": "efficientnet_b0",
+    "precision": "float32",
+    "package": "iDex/Recognition/KantoClassifier.mlpackage"
+  }
+}

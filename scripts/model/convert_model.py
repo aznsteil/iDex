@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Rebuild the bundled Kanto classifier from its pinned upstream checkpoint.
+"""Historical reference-package reproducer. For the active FP32 export use scripts/replacement/export.py.
 
 Run in an isolated Python 3.11 environment with requirements.txt installed.
 The downloaded checkpoint contains tensors only; torch.load uses weights_only.
@@ -44,6 +44,7 @@ def download(directory, filename):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--cache", type=Path, default=Path("/tmp/idex-model-source"))
+    parser.add_argument("--output", type=Path, default=ROOT / "artifacts/baseline-reproduction/KantoClassifier.mlpackage", help="New baseline reproduction destination; never overwrites an existing package")
     parser.add_argument("--verify", action="store_true", help="Compare PyTorch and Core ML using upstream examples and negative images")
     parser.add_argument("--verify-sprites", action="store_true", help="Check the 151 bundled pixel sprites (an in-domain smoke check, not a camera benchmark)")
     args = parser.parse_args()
@@ -75,7 +76,10 @@ def main():
     model.user_defined_metadata["checkpoint_sha256"] = hashlib.sha256(checkpoint.read_bytes()).hexdigest()
     model.input_description["image"] = "224 by 224 RGB image, ImageNet normalization is embedded in the model."
     model.output_description["logits"] = "151 unnormalized scores in pokemon_labels.json order; no temperature scaling."
-    destination = ROOT / "iDex/Recognition/KantoClassifier.mlpackage"
+    destination = args.output.resolve()
+    if destination.exists():
+        raise ValueError("Use a new output path; existing model packages are preserved")
+    destination.parent.mkdir(parents=True, exist_ok=True)
     model.save(str(destination))
     (destination.parent / "pokemon_labels.json").write_text(json.dumps(labels, indent=2) + "\n")
     print(f"Saved {destination}")
@@ -113,7 +117,7 @@ def main():
             if expected is not None:
                 assert record["topID"] == expected
             records.append(record)
-        (ROOT / "scripts/model/verification.json").write_text(json.dumps(records, indent=2) + "\n")
+        (destination.parent / "verification.json").write_text(json.dumps(records, indent=2) + "\n")
 
     if args.verify_sprites:
         records = []
@@ -136,7 +140,7 @@ def main():
                    "accepted": sum(r["accepted"] for r in records),
                    "acceptedWrong": sum(r["accepted"] and r["expectedID"] != r["topID"] for r in records),
                    "records": records}
-        (ROOT / "scripts/model/sprite-verification.json").write_text(json.dumps(summary, indent=2) + "\n")
+        (destination.parent / "sprite-verification.json").write_text(json.dumps(summary, indent=2) + "\n")
         print({k: v for k, v in summary.items() if k != "records"})
 
 

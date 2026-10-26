@@ -1,5 +1,20 @@
 # Performance validation
 
+## Selected FP32 model on a physical iPhone
+
+Measured 2026-10-26 on physical `iPhone19,4`, iOS27.1, using a separate Release benchmark app and the exact locally trained FP32 artifact now selected by the user. No iDex phone installation was performed by the project migration.
+
+| `.all` policy | Warm prediction p50/p95 | Warm encoded-bytes-to-result p50/p95 | 30-second sustained total p50/p95 |
+| --- | ---: | ---: | ---: |
+| Selected EfficientNet-B0 FP32 | 2.88/4.71ms | 9.91/11.87ms | 15.56/17.21ms |
+
+Each passing configuration has 100 warmed samples after ten warmups, and all171 numerical fixtures were checked before timing. The FP32 model passed all four compute policies; the FP16 candidate did not, and is not selected. Timing starts with resident encoded224px PNG bytes and includes import preparation, image feature construction, prediction/logit reading, and softmax; it excludes file I/O, sensor capture, UI and model loading. Warm loops use the first100 fixtures, sustained loops all171. Fixed order, varying preparation costs and input mix confound precise speedup comparisons; thermal state stayed nominal. Ten model-reopen samples have uncontrolled process/OS caches and are not proven cold-start distributions. A separate fresh-process study stopped after a bounded timeout and is incomplete; no robust cold p95 is claimed.
+
+These are measurements of the selected FP32 model, not a controlled speedup claim. Compute eligibility does not prove actual ANE placement. Real camera/image-capture latency, longer thermal/energy tests and independent camera accuracy remain separate checks. See [current model provenance and rollback](../iDex/Recognition/MODEL.md).
+
+## Historical simulator optimization measurements
+
+
 Measured on October 24, 2026, using Xcode 27.1 and the iPhone Duo iOS 27.1 simulator on an Apple M1 Max. The app uses its existing optimized Debug build. These are focused workloads, not whole-app launch or frame-rate measurements.
 
 | Workload | Previous path | Optimized path | Result |

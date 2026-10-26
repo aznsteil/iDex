@@ -1,0 +1,16 @@
+{
+  "baseline": "models/Baseline.mlmodelc",
+  "candidate": "models/Candidate.mlmodelc",
+  "labels": "pokemon_labels.json",
+  "manifest": "fixtures/manifest.json",
+  "warmups": 10,
+  "iterations": 100,
+  "loadIterations": 5,
+  "absoluteTolerance": 0.05,
+  "relativeTolerance": 0.01,
+  "requireReferences": true,
+  "runTag": "replace-with-artifact-hashes-and-run-identifier",
+  "deviceNotes": "Requested test target: user's A20Pro iPhone Duo on iOS 27+. Record actual hardware and OS; this string is not detection.",
+  "modelOrder": ["baseline", "candidate"],
+  "computeUnitOrder": ["cpuOnly", "cpuAndGPU", "cpuAndNeuralEngine", "all"]
+}

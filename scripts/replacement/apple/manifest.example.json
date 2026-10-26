@@ -1,0 +1,12 @@
+{
+  "fixtures": [
+    {
+      "id": "replace-with-fixture-id",
+      "image": "images/example.png",
+      "group": "artwork",
+      "target_id": 25,
+      "baseline_reference_logits": "references/baseline-example.json",
+      "candidate_reference_logits": "references/candidate-example.json"
+    }
+  ]
+}

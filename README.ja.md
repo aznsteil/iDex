@@ -61,7 +61,7 @@ SwiftUI、AVFoundation、Core ML、システム音声。すべてローカルで
 
 ## 人間のみなさん、ありがとう
 
-スプライト：[Pokémon Database](https://pokemondb.net/sprites)。データと鳴き声：[PokéAPI](https://github.com/PokeAPI/pokeapi)。モデル：[BiernyVR](https://huggingface.co/BiernyVR/pokemon-classifier-mobilenetv3)。フォント：Press Start 2P、Fusion Pixel（SIL OFL 1.1）。
+スプライト：[Pokémon Database](https://pokemondb.net/sprites)。データと鳴き声：[PokéAPI](https://github.com/PokeAPI/pokeapi)。モデル：[TorchVision](https://docs.pytorch.org/vision/stable/models/efficientnet.html) を用いてローカル学習した EfficientNet-B0（FP32）。フォント：Press Start 2P、Fusion Pixel（SIL OFL 1.1）。
 
 [素材のクレジット](iDex/Catalog/ATTRIBUTION.md) · [モデルの出典](iDex/Recognition/MODEL.md)
 
