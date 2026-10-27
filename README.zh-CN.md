@@ -59,6 +59,12 @@ SwiftUI、AVFoundation、Core ML 和系统语音。所有处理均在本地完�
 
 [开发指南](docs/development.md) · [模型说明](iDex/Recognition/MODEL.md) · [性能](docs/performance.md) · [截图与图形资源](docs/images/README.md)
 
+## 许可证
+
+iDex 的原创应用源代码及配套脚本采用 [MIT 许可证](LICENSE)，版权所有 (c) 2026 Zihang Huang。适用范围和排除项见 [NOTICE.md](NOTICE.md)。
+
+打包模型不适用 MIT；贡献者对训练模型贡献所持权利按[模型声明](iDex/Recognition/MODEL_NOTICE.md)中的范围以 CC BY-NC-SA 4.0 提供。宝可梦内容和外部训练数据集也不适用 MIT。另见[资源署名](iDex/Catalog/ATTRIBUTION.md)；内置字体保留 [Press Start 2P](iDex/Resources/Fonts/PressStart2P-OFL.txt) 和 [Fusion Pixel](iDex/Resources/Fonts/FusionPixel-OFL.txt) 的 OFL 许可证。
+
 ## 感谢各位人类
 
 像素图：[Pokémon Database](https://pokemondb.net/sprites)。数据与叫声：[PokéAPI](https://github.com/PokeAPI/pokeapi)。模型：使用 [TorchVision](https://docs.pytorch.org/vision/stable/models/efficientnet.html) 本地训练的 EfficientNet-B0（FP32）。字体：Press Start 2P 和 Fusion Pixel（SIL OFL 1.1）。

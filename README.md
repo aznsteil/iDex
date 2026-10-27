@@ -57,6 +57,12 @@ SwiftUI, AVFoundation, Core ML, and system speech. Everything runs locally.
 
 [Development guide](docs/development.md) · [Model notes](iDex/Recognition/MODEL.md) · [Performance](docs/performance.md) · [Screenshots & graphics](docs/images/README.md)
 
+## License
+
+iDex's original app source code and supporting scripts use the [MIT License](LICENSE), copyright (c) 2026 Zihang Huang. See [NOTICE.md](NOTICE.md) for scope and exclusions.
+
+The packaged model is excluded; contributor trained-model rights are offered under CC BY-NC-SA 4.0 as described in the [model notice](iDex/Recognition/MODEL_NOTICE.md). Pokémon content and external training datasets are also excluded. See [asset credits](iDex/Catalog/ATTRIBUTION.md); bundled fonts retain the [Press Start 2P](iDex/Resources/Fonts/PressStart2P-OFL.txt) and [Fusion Pixel](iDex/Resources/Fonts/FusionPixel-OFL.txt) OFL licenses.
+
 ## Thanks, humans
 
 Sprites: [Pokémon Database](https://pokemondb.net/sprites). Data and cries: [PokéAPI](https://github.com/PokeAPI/pokeapi). Model: locally trained EfficientNet-B0 (FP32), built with [TorchVision](https://docs.pytorch.org/vision/stable/models/efficientnet.html). Fonts: Press Start 2P and Fusion Pixel (SIL OFL 1.1).

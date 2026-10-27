@@ -59,6 +59,12 @@ SwiftUI、AVFoundation、Core ML、システム音声。すべてローカルで
 
 [開発ガイド](docs/development.md) · [モデルの説明](iDex/Recognition/MODEL.md) · [パフォーマンス](docs/performance.md) · [スクリーンショットと画像素材](docs/images/README.md)
 
+## ライセンス
+
+iDex 独自のアプリのソースコードと関連スクリプトには [MIT ライセンス](LICENSE)を適用します。著作権表示は Copyright (c) 2026 Zihang Huang です。適用範囲と除外対象は [NOTICE.md](NOTICE.md)をご覧ください。
+
+同梱モデルは MIT の対象外です。学習済みモデルへの貢献について貢献者が保有する権利は、[モデルに関する通知](iDex/Recognition/MODEL_NOTICE.md)に記載された範囲で CC BY-NC-SA 4.0 により提供されます。ポケモンのコンテンツと外部の学習データセットも MIT の対象外です。[素材のクレジット](iDex/Catalog/ATTRIBUTION.md)もご確認ください。同梱フォントには引き続き [Press Start 2P](iDex/Resources/Fonts/PressStart2P-OFL.txt) と [Fusion Pixel](iDex/Resources/Fonts/FusionPixel-OFL.txt) の OFL ライセンスを適用します。
+
 ## 人間のみなさん、ありがとう
 
 スプライト：[Pokémon Database](https://pokemondb.net/sprites)。データと鳴き声：[PokéAPI](https://github.com/PokeAPI/pokeapi)。モデル：[TorchVision](https://docs.pytorch.org/vision/stable/models/efficientnet.html) を用いてローカル学習した EfficientNet-B0（FP32）。フォント：Press Start 2P、Fusion Pixel（SIL OFL 1.1）。
