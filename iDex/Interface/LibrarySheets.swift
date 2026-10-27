@@ -91,7 +91,6 @@ struct SettingsSheet: View {
                         .font(.footnote).foregroundStyle(.secondary)
                     Link(store.text("Sprites · Pokémon Database", "像素图 · Pokémon Database", "スプライト · Pokémon Database"), destination: URL(string: "https://pokemondb.net/sprites")!)
                     Link(store.text("Pokédex data · PokéAPI", "图鉴数据 · PokéAPI", "図鑑データ · PokéAPI"), destination: URL(string: "https://github.com/PokeAPI/pokeapi")!)
-                    Link(store.text("On-device model · BiernyVR", "本地模型 · BiernyVR", "デバイス内モデル · BiernyVR"), destination: URL(string: "https://huggingface.co/BiernyVR/pokemon-classifier-mobilenetv3")!)
                     Text("Press Start 2P · Fusion Pixel · SIL OFL 1.1").font(.caption).foregroundStyle(.secondary)
                 }
             }.navigationTitle(store.text("Device settings", "设备设置", "デバイス設定"))
